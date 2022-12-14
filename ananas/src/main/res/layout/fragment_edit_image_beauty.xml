@@ -28,16 +28,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/iamutkarshtiwari_github_io_ananas_smooth"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <iamutkarshtiwari.github.io.ananas.editimage.view.CustomSeekBar
                 android:id="@+id/smooth_value_bar"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -53,16 +53,16 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="1"
+                android:layout_weight="1.2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/iamutkarshtiwari_github_io_ananas_white_skin"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <iamutkarshtiwari.github.io.ananas.editimage.view.CustomSeekBar
                 android:id="@+id/white_skin_value_bar"
-                android:layout_weight="2"
+                android:layout_weight="1.8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
