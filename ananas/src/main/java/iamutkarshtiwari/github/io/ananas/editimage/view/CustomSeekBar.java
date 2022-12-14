@@ -39,14 +39,14 @@ public class CustomSeekBar extends SeekBar {
     @Override
     protected synchronized void onDraw(Canvas canvas) {
 
-        rect.set(getThumbOffset(),
-                (getHeight() / 2) - (seekbar_height / 2),
-                getWidth() - getThumbOffset(),
-                (getHeight() / 2) + (seekbar_height / 2));
-
-        paint.setColor(Color.GRAY);
-
-        canvas.drawRect(rect, paint);
+//        rect.set(getThumbOffset(),
+//                (getHeight() / 2) - (seekbar_height / 2),
+//                getWidth() - getThumbOffset(),
+//                (getHeight() / 2) + (seekbar_height / 2));
+//
+//        paint.setColor(Color.GRAY);
+//
+//        canvas.drawRect(rect, paint);
 
         // TODO: Fix the slider indicator
 

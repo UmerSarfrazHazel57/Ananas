@@ -22,12 +22,14 @@
         android:padding="5dp">
 
         <LinearLayout
+            android:weightSum="3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/iamutkarshtiwari_github_io_ananas_smooth"
                 android:textColor="@color/white"
@@ -35,7 +37,8 @@
 
             <iamutkarshtiwari.github.io.ananas.editimage.view.CustomSeekBar
                 android:id="@+id/smooth_value_bar"
-                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:max="500"
@@ -43,13 +46,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:weightSum="3"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/iamutkarshtiwari_github_io_ananas_white_skin"
                 android:textColor="@color/white"
@@ -57,7 +62,8 @@
 
             <iamutkarshtiwari.github.io.ananas.editimage.view.CustomSeekBar
                 android:id="@+id/white_skin_value_bar"
-                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:max="10"
