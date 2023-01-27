@@ -78,7 +78,7 @@ public class CropFragment extends BaseEditFragment {
         for (int i = 0; i < ratioTextList.length; i++) {
             TextView text = new TextView(activity);
             toggleButtonStatus(text, false);
-            text.setTextSize(15);
+            text.setTextSize(12);
             text.setAllCaps(true);
             text.setTypeface(text.getTypeface(), Typeface.BOLD);
             text.setText(getResources().getText(ratioTextList[i].getRatioTextId()));

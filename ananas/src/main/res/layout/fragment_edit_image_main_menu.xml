@@ -19,9 +19,11 @@
             <LinearLayout
                 android:id="@+id/btn_paint"
                 style="@style/option_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:visibility="gone"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     style="@style/icon_style"
@@ -33,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="@string/iamutkarshtiwari_github_io_ananas_edit"
+                    android:text="Brush"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/image_edit_text_size"
                     tool:text="Text" />

@@ -1,7 +1,7 @@
 <resources>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="main_backgroud">#16214F</color>
+    <color name="main_backgroud">#000000</color>
     <color name="materialcolorpicker__red">#f44336</color>
     <color name="materialcolorpicker__green">#4caf50</color>
     <color name="materialcolorpicker__blue">#2196f3</color>
@@ -9,6 +9,8 @@
     <color name="hint_foreground_material_light">#00000000</color>
     <color name="text_color">#BEC2C4</color>
     <color name="text_color_gray_3">#A6A5A5</color>
+
+    <color name="blue">#0070fb</color>
 
     <!--Kelly's 22 contrast colors-->
     <color name="kelly_1">#F2F3F4</color>

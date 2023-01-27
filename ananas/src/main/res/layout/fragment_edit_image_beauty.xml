@@ -42,7 +42,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:max="500"
-                android:thumbTint="@color/white" />
+                android:progressTint="@color/blue"
+                android:thumbTint="@color/blue" />
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +68,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:max="10"
-                android:thumbTint="@color/white" />
+                android:progressTint="@color/blue"
+                android:thumbTint="@color/blue" />
         </LinearLayout>
 
     </LinearLayout>

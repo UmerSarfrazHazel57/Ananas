@@ -24,6 +24,7 @@
         android:layout_toRightOf="@id/back_to_main"
         android:max="2000"
         android:progress="2000"
-        android:thumbTint="@color/white" />
+        android:progressTint="@color/blue"
+        android:thumbTint="@color/blue" />
 
 </RelativeLayout>

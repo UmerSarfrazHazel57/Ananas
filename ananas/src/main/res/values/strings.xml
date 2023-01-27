@@ -1,8 +1,8 @@
 <resources>
-    <string name="iamutkarshtiwari_github_io_ananas_library_name">Gallery Locker Editor</string>
+    <string name="iamutkarshtiwari_github_io_ananas_library_name">Edit</string>
     <string name="iamutkarshtiwari_github_io_ananas_no_images">No image found</string>
     <string name="iamutkarshtiwari_github_io_ananas_images">%d images</string>
-    <string name="iamutkarshtiwari_github_io_ananas_done">DONE</string>
+    <string name="iamutkarshtiwari_github_io_ananas_done">SAVE</string>
     <string name="iamutkarshtiwari_github_io_ananas_apply">APPLY</string>
 
     <string name="iamutkarshtiwari_github_io_ananas_stickers">Stickers</string>

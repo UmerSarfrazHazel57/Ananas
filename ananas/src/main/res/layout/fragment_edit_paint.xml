@@ -53,8 +53,8 @@
         android:id="@+id/settings"
         style="@style/setting_icon_style"
         android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:src="@drawable/ic_settings_black_24dp" />
 
 </RelativeLayout>

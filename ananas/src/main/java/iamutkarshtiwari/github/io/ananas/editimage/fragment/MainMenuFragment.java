@@ -1,9 +1,13 @@
 package iamutkarshtiwari.github.io.ananas.editimage.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.ImageEditorIntentBuilder;
@@ -72,46 +76,55 @@ public class MainMenuFragment extends BaseEditFragment implements
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.STICKER_FEATURE, false)) {
             stickerBtn.setVisibility(View.VISIBLE);
             stickerBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) stickerBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.FILTER_FEATURE, false)) {
             filterBtn.setVisibility(View.VISIBLE);
             filterBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) filterBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.CROP_FEATURE, false)) {
             cropBtn.setVisibility(View.VISIBLE);
             cropBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) cropBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.ROTATE_FEATURE, false)) {
             rotateBtn.setVisibility(View.VISIBLE);
             rotateBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) rotateBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.ADD_TEXT_FEATURE, false)) {
             textBtn.setVisibility(View.VISIBLE);
             textBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) textBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.PAINT_FEATURE, false)) {
             paintBtn.setVisibility(View.VISIBLE);
             paintBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) paintBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.BEAUTY_FEATURE, false)) {
             beautyBtn.setVisibility(View.VISIBLE);
             beautyBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) beautyBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.BRIGHTNESS_FEATURE, false)) {
             brightnessBtn.setVisibility(View.VISIBLE);
             brightnessBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) brightnessBtn);
         }
 
         if (intentBundle.getBoolean(ImageEditorIntentBuilder.SATURATION_FEATURE, false)) {
             saturationBtn.setVisibility(View.VISIBLE);
             saturationBtn.setOnClickListener(this);
+            setLLWidth((LinearLayout) saturationBtn);
         }
 
         subscribeMenuOptionsSubject();
@@ -225,4 +238,27 @@ public class MainMenuFragment extends BaseEditFragment implements
         disposable.dispose();
         super.onDestroyView();
     }
+
+
+    private void setLLWidth(LinearLayout layout){
+// Gets the layout params that will allow you to resize the layout
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) layout.getLayoutParams();
+// Changes the height and width to the specified *pixels*
+        params.width = getWidth(requireActivity());
+        layout.setLayoutParams(params);
+    }
+
+    private int getWidth(Activity context){
+        try{
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            context.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int  width = displayMetrics.widthPixels;
+            return (width)/4;
+        }catch (Exception e ){
+            Log.d("TAG",e.getLocalizedMessage());
+        }
+
+        return 80;
+    }
+
 }
