@@ -7,12 +7,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
+
+import iamutkarshtiwari.github.io.ananas.R;
 
 public class CustomPaintView extends View {
     private Paint mPaint;
@@ -24,6 +29,8 @@ public class CustomPaintView extends View {
     private float last_x;
     private float last_y;
     private boolean isEraser;
+
+    public  ImageView imageView;
 
     private int mColor;
 
@@ -56,9 +63,17 @@ public class CustomPaintView extends View {
         }
     }
 
-    private void generatorBit() {
+     public void generatorBit() {
         mDrawBit = Bitmap.createBitmap(getMeasuredWidth(), getMeasuredHeight(), Bitmap.Config.ARGB_8888);
         mPaintCanvas = new Canvas(mDrawBit);
+        updateCanvas();
+    }
+
+
+    public void updateCanvas() {
+        RectF imageBounds = new RectF();
+        imageView.getImageMatrix().mapRect(imageBounds, new RectF(imageView.getDrawable().getBounds()));
+        mPaintCanvas.clipRect(imageBounds);
     }
 
     private void init(Context context) {

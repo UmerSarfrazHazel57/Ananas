@@ -77,6 +77,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         loadingDialog = BaseActivity.getLoadingDialog(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_loading,
                 false);
         customPaintView = ensureEditActivity().findViewById(R.id.custom_paint_view);
+        customPaintView.imageView = activity.mainImage;
         backToMenu = mainView.findViewById(R.id.back_to_main);
         eraserView = mainView.findViewById(R.id.eraser_btn);
         brushView = mainView.findViewById(R.id.brush_btn);
@@ -88,6 +89,8 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
 
         setClickListeners();
         initStroke();
+
+
     }
 
     private void setupOptionsConfig() {
@@ -96,6 +99,11 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
 
         eraserConfigDialog = new EraserConfigDialog();
         eraserConfigDialog.setPropertiesChangeListener(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void setClickListeners() {
@@ -149,6 +157,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         activity.bannerFlipper.showPrevious();
 
         customPaintView.reset();
+
         customPaintView.setVisibility(View.GONE);
     }
 
