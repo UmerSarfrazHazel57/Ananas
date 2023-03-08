@@ -28,6 +28,7 @@ public class EraserConfigDialog extends BottomSheetDialogFragment implements See
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style. AppBottomSheetDialogTheme);
     }
 
     @Override

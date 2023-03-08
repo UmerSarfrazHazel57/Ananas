@@ -36,6 +36,7 @@ public class BrushConfigDialog extends BottomSheetDialogFragment implements Seek
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style. AppBottomSheetDialogTheme);
     }
 
     @Override
