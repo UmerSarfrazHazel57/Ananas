@@ -114,10 +114,18 @@ public class TextEditorDialogFragment extends DialogFragment {
             }
             dismiss();
         });
+
+        showKeyboard(addTextEditText);
     }
 
     //Callback to listener if user is done with text editing
     public void setOnTextEditorListener(OnTextEditorListener onTextEditorListener) {
         this.onTextEditorListener = onTextEditorListener;
+    }
+
+    private void showKeyboard(EditText editText) {
+        editText.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
     }
 }
