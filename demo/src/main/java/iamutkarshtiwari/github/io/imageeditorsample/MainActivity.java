@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .forcePortrait(false)
                     .setSupportActionBarVisibility(false)
                     .build();
-            
+
 
             EditImageActivity.start(editResultLauncher, intent, this);
         } catch (Exception e) {

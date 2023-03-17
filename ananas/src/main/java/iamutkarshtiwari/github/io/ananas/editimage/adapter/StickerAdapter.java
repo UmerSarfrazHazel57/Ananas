@@ -49,11 +49,11 @@ public class StickerAdapter extends RecyclerView.Adapter<ViewHolder> {
         StickerViewHolder stickerViewHolder = (StickerViewHolder) viewHolder;
         String path = pathList.get(position);
 
-        String imageUrl = "drawable/" + path;
-        int imageKey = stickerFragment.getResources().getIdentifier(imageUrl, "drawable", stickerFragment.getContext().getPackageName());
-        stickerViewHolder.image.setImageDrawable(stickerFragment.getResources().getDrawable(imageKey));
-        stickerViewHolder.image.setTag(imageUrl);
-        stickerViewHolder.image.setOnClickListener(imageClick);
+//        String imageUrl = "drawable/" + path;
+//        int imageKey = stickerFragment.getResources().getIdentifier(imageUrl, "drawable", stickerFragment.getContext().getPackageName());
+//        stickerViewHolder.image.setImageDrawable(stickerFragment.getResources().getDrawable(imageKey));
+//        stickerViewHolder.image.setTag(imageUrl);
+//        stickerViewHolder.image.setOnClickListener(imageClick);
     }
 
     public void addStickerImages(String folderPath, int stickerCount) {
