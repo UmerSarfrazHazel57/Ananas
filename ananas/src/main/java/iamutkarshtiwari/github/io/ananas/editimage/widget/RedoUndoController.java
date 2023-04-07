@@ -2,6 +2,7 @@ package iamutkarshtiwari.github.io.ananas.editimage.widget;
 
 import android.graphics.Bitmap;
 import android.view.View;
+import android.widget.Button;
 
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity;
@@ -15,6 +16,7 @@ public class RedoUndoController implements View.OnClickListener {
     private View mRootView;
     private View mUndoBtn;//撤销按钮
     private View mRedoBtn;//重做按钮
+    private View saveButton;
     private EditImageActivity mActivity;
     private EditCache mEditCache = new EditCache();//保存前一次操作内容 用于撤销操作
 
@@ -25,9 +27,10 @@ public class RedoUndoController implements View.OnClickListener {
         }
     };
 
-    public RedoUndoController(EditImageActivity activity, View panelView) {
+    public RedoUndoController(EditImageActivity activity, View panelView,View saveButton) {
         this.mActivity = activity;
         this.mRootView = panelView;
+        this.saveButton = saveButton;
 
         mUndoBtn = mRootView.findViewById(R.id.undo_btn);
         mRedoBtn = mRootView.findViewById(R.id.redo_btn);
@@ -86,6 +89,7 @@ public class RedoUndoController implements View.OnClickListener {
     public void updateBtns() {
         //System.out.println("缓存Size = " + mEditCache.getSize() + "  current = " + mEditCache.getCur());
         //System.out.println("content = " + mEditCache.debugLog());
+        saveButton.setEnabled(mEditCache.checkNextBitExist());
         mUndoBtn.setVisibility(mEditCache.checkNextBitExist() ? View.VISIBLE : View.INVISIBLE);
         mRedoBtn.setVisibility(mEditCache.checkPreBitExist() ? View.VISIBLE : View.INVISIBLE);
     }

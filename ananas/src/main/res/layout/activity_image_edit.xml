@@ -59,8 +59,8 @@
                     android:gravity="center"
                     android:text="@string/iamutkarshtiwari_github_io_ananas_done"
                     android:textAllCaps="true"
-                    android:textColor="#ffffff"
-                    android:textSize="14sp" />
+                    android:textColor="@color/white_enabled_selector"
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/apply"
@@ -70,7 +70,7 @@
                     android:text="@string/iamutkarshtiwari_github_io_ananas_apply"
                     android:textAllCaps="true"
                     android:textColor="#ffffff"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
             </ViewFlipper>
 
 
