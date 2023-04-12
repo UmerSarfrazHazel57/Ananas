@@ -157,7 +157,10 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
         activity.mainImage.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showPrevious();
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
+
         textStickersParentView.setVisibility(View.GONE);
     }
 
@@ -166,7 +169,7 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
         activity.mode = EditImageActivity.MODE_TEXT;
         activity.mainImage.setVisibility(View.GONE);
         textStickersParentView.updateImageBitmap(activity.getMainBit());
-        activity.bannerFlipper.showNext();
+      //  activity.bannerFlipper.showNext();
         textStickersParentView.setVisibility(View.VISIBLE);
 
         autoScaleImageToFitBounds();
@@ -246,6 +249,10 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
 
     @SuppressLint("ClickableViewAccessibility")
     private void addText(String text, final int colorCodeTextView) {
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply){
+            activity.bannerFlipper.showNext();
+        }
+
         final View textStickerView = getTextStickerLayout();
         final TextView textInputTv = textStickerView.findViewById(R.id.text_sticker_tv);
         final ImageView imgClose = textStickerView.findViewById(R.id.sticker_delete_btn);
