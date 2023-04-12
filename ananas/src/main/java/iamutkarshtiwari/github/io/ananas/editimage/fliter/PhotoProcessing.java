@@ -54,6 +54,10 @@ public class PhotoProcessing {
         return filteredBitmap;
     }
 
+
+
+
+
     // /////////////////////////////////////////////
     static {
         System.loadLibrary("photoprocessing");

@@ -20,17 +20,25 @@ import androidx.annotation.RequiresApi;
 import iamutkarshtiwari.github.io.ananas.R;
 
 public class CustomPaintView extends View {
+
+   public interface DrawFunction {
+        void onDrawStarted();
+    }
+
     private Paint mPaint;
     private Bitmap mDrawBit;
     private Paint mEraserPaint;
-
     private Canvas mPaintCanvas = null;
+
+
 
     private float last_x;
     private float last_y;
     private boolean isEraser;
 
     public  ImageView imageView;
+    public DrawFunction drawStarted = () -> {
+    };
 
     private int mColor;
 
@@ -113,7 +121,9 @@ public class CustomPaintView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mDrawBit != null) {
+
             canvas.drawBitmap(mDrawBit, 0, 0, null);
+
         }
     }
 
@@ -122,6 +132,8 @@ public class CustomPaintView extends View {
         boolean ret = super.onTouchEvent(event);
         float x = event.getX();
         float y = event.getY();
+
+        drawStarted.onDrawStarted();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:

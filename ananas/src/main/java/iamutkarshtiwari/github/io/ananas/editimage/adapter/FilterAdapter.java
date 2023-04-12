@@ -1,12 +1,16 @@
 package iamutkarshtiwari.github.io.ananas.editimage.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.adapter.viewholders.FilterViewHolder;
 import iamutkarshtiwari.github.io.ananas.editimage.fragment.FilterListFragment;
@@ -15,21 +19,21 @@ public class FilterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int DEFAULT_TYPE = 1;
 
     private String[] filters;
-    private String[] filterImages;
+
     private FilterListFragment filterListFragment;
     private Context context;
-
+    private ArrayList<Bitmap> bitmaps = new  ArrayList();
     public FilterAdapter(FilterListFragment fragment, Context context) {
         super();
         this.filterListFragment = fragment;
         this.context = context;
         filters = filterListFragment.getResources().getStringArray(R.array.iamutkarshtiwari_github_io_ananas_filters);
-        filterImages = filterListFragment.getResources().getStringArray(R.array.iamutkarshtiwari_github_io_ananas_filter_drawable_list);
+//        filterImages = filterListFragment.getResources().getStringArray(R.array.iamutkarshtiwari_github_io_ananas_filter_drawable_list);
     }
 
     @Override
     public int getItemCount() {
-        return filterImages.length;
+        return bitmaps.size();
     }
 
     @Override
@@ -52,11 +56,21 @@ public class FilterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         String name = filters[position];
         filterViewHolder.text.setText(name);
 
-        String imageUrl = "drawable/" + filterImages[position];
-        int imageKey = filterListFragment.getResources().getIdentifier(imageUrl, "drawable", context.getPackageName());
-        filterViewHolder.icon.setImageDrawable(filterListFragment.getResources().getDrawable(imageKey));
+//        String imageUrl = "drawable/" + filterImages[position];
+//        int imageKey = filterListFragment.getResources().getIdentifier(imageUrl, "drawable", context.getPackageName());
+//        filterViewHolder.icon.setImageDrawable(filterListFragment.getResources().getDrawable(imageKey));
 
+        filterViewHolder.icon.setImageBitmap(bitmaps.get(pos));
         filterViewHolder.icon.setTag(position);
         filterViewHolder.icon.setOnClickListener(v -> filterListFragment.enableFilter(position));
     }
+
+
+    public void updateData(ArrayList<Bitmap> newData){
+        bitmaps = newData;
+        notifyDataSetChanged();
+    }
+
+
+
 }
