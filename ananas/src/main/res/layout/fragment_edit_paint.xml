@@ -5,10 +5,10 @@
     <ImageView
         android:id="@+id/back_to_main"
         android:layout_width="40dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="10dp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:src="@drawable/image_edit_back" />
 
     <LinearLayout
@@ -52,9 +52,9 @@
     <ImageView
         android:id="@+id/settings"
         style="@style/setting_icon_style"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
         android:src="@drawable/ic_settings_black_24dp" />
 
 </RelativeLayout>
