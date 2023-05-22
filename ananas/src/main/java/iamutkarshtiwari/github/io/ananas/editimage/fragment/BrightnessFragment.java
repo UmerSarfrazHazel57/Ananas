@@ -29,6 +29,8 @@ public class BrightnessFragment extends BaseEditFragment {
     private SeekBar mSeekBar;
     private View mainView;
 
+    private int initialProgress = 0;
+
     public static BrightnessFragment newInstance() {
         return new BrightnessFragment();
     }
@@ -58,11 +60,22 @@ public class BrightnessFragment extends BaseEditFragment {
 
         this.mBrightnessView = ensureEditActivity().brightnessView;
         mBackToMenu.setOnClickListener(new BrightnessFragment.BackToMenuClick());
+        initialProgress  = mSeekBar.getProgress();
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float value = progress - (seekBar.getMax() / 2);
                 activity.brightnessView.setBright(value / 10f);
+
+                if(initialProgress == progress){
+                    if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn ){
+                        activity.bannerFlipper.showPrevious();
+                    }
+                }else{
+                    if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply ){
+                        activity.bannerFlipper.showNext();
+                    }
+                }
             }
 
             @Override
@@ -88,7 +101,7 @@ public class BrightnessFragment extends BaseEditFragment {
         activity.brightnessView.setImageBitmap(activity.getMainBit());
         activity.brightnessView.setVisibility(View.VISIBLE);
         initView();
-        activity.bannerFlipper.showNext();
+       // activity.bannerFlipper.showNext();
     }
 
     @Override
@@ -97,7 +110,10 @@ public class BrightnessFragment extends BaseEditFragment {
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setVisibility(View.VISIBLE);
         activity.brightnessView.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
+
         activity.brightnessView.setBright(INITIAL_BRIGHTNESS);
     }
 

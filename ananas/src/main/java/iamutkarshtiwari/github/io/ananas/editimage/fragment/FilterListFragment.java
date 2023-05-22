@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
 import iamutkarshtiwari.github.io.ananas.BaseActivity;
 import iamutkarshtiwari.github.io.ananas.R;
 import iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity;
@@ -32,6 +35,7 @@ public class FilterListFragment extends BaseEditFragment {
     private Bitmap filterBitmap;
     private Bitmap currentBitmap;
     private Dialog loadingDialog;
+    private FilterAdapter filterAdapter;
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -58,7 +62,7 @@ public class FilterListFragment extends BaseEditFragment {
         super.onActivityCreated(savedInstanceState);
 
         RecyclerView filterRecyclerView = mainView.findViewById(R.id.filter_recycler);
-        FilterAdapter filterAdapter = new FilterAdapter(this, getContext());
+         filterAdapter = new FilterAdapter(this, getContext());
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         filterRecyclerView.setLayoutManager(layoutManager);
@@ -75,7 +79,8 @@ public class FilterListFragment extends BaseEditFragment {
         activity.mainImage.setImageBitmap(activity.getMainBit());
         activity.mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
         activity.mainImage.setScaleEnabled(false);
-        activity.bannerFlipper.showNext();
+        createThumbnail();
+       // activity.bannerFlipper.showNext();
     }
 
     @Override
@@ -86,7 +91,10 @@ public class FilterListFragment extends BaseEditFragment {
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setScaleEnabled(true);
-        activity.bannerFlipper.showPrevious();
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
+
     }
 
     public void applyFilterImage() {
@@ -115,6 +123,9 @@ public class FilterListFragment extends BaseEditFragment {
         if (filterIndex == NULL_FILTER_INDEX) {
             activity.mainImage.setImageBitmap(activity.getMainBit());
             currentBitmap = activity.getMainBit();
+            if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+                activity.bannerFlipper.showPrevious();
+            }
             return;
         }
 
@@ -131,6 +142,22 @@ public class FilterListFragment extends BaseEditFragment {
         compositeDisposable.add(applyFilterDisposable);
     }
 
+
+    public void createThumbnail() {
+        Disposable applyFilterDisposable = createThumbnails()
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(subscriber -> loadingDialog.show())
+                .doFinally(() -> loadingDialog.dismiss())
+                .subscribe(
+                        this::updateThumbnails,
+                        e -> showSaveErrorToast()
+                );
+
+        compositeDisposable.add(applyFilterDisposable);
+    }
+
+
     private void updatePreviewWithFilter(Bitmap bitmapWithFilter) {
         if (bitmapWithFilter == null) return;
 
@@ -143,11 +170,30 @@ public class FilterListFragment extends BaseEditFragment {
         currentBitmap = filterBitmap;
     }
 
+
+    private void updateThumbnails(ArrayList<Bitmap> bitmapArrayList){
+        filterAdapter.updateData(bitmapArrayList);
+
+    }
+
+
     private void showSaveErrorToast() {
         Toast.makeText(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_save_error, Toast.LENGTH_SHORT).show();
     }
 
     private Single<Bitmap> applyFilter(int filterIndex) {
+
+        if(filterIndex == 0){
+            if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+                activity.bannerFlipper.showPrevious();
+            }
+        }else{
+            if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply){
+                activity.bannerFlipper.showNext();
+            }
+        }
+
+
         return Single.fromCallable(() -> {
 
             Bitmap srcBitmap = Bitmap.createBitmap(activity.getMainBit().copy(
@@ -156,7 +202,31 @@ public class FilterListFragment extends BaseEditFragment {
         });
     }
 
+
+
+
+    private Single<ArrayList<Bitmap>> createThumbnails() {
+
+        ArrayList<Bitmap> bitmapArrayList = new  ArrayList();
+
+        return Single.fromCallable(() -> {
+            for (int i = 0; i <=11 ; i++) {
+                Bitmap srcBitmap = Bitmap.createScaledBitmap(activity.getMainBit().copy(
+                        Bitmap.Config.RGB_565, true),200,300,false);
+                if(i != NULL_FILTER_INDEX){
+                    bitmapArrayList.add(PhotoProcessing.filterPhoto(srcBitmap, i));
+                }else{
+                    bitmapArrayList.add(srcBitmap);
+                }
+            }
+
+            return bitmapArrayList;
+        });
+    }
+
     public void setCurrentBitmap(Bitmap currentBitmap) {
         this.currentBitmap = currentBitmap;
     }
+
+
 }

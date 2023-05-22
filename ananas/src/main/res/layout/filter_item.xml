@@ -9,6 +9,7 @@
         android:id="@+id/filter_image"
         android:layout_width="65dp"
         android:layout_height="65dp"
+        android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp" />
 

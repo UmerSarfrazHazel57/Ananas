@@ -154,19 +154,24 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         activity.mode = EditImageActivity.MODE_NONE;
         activity.bottomGallery.setCurrentItem(MainMenuFragment.INDEX);
         activity.mainImage.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showPrevious();
-
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
         customPaintView.reset();
-
         customPaintView.setVisibility(View.GONE);
     }
 
     public void onShow() {
         activity.mode = EditImageActivity.MODE_PAINT;
         activity.mainImage.setImageBitmap(activity.getMainBit());
-        activity.bannerFlipper.showNext();
-
         customPaintView.setVisibility(View.VISIBLE);
+        customPaintView.drawStarted = () -> {
+            if(activity.bannerFlipper.getCurrentView().getId() == R.id.save_btn){
+                activity.bannerFlipper.showNext();
+            }
+
+        };
+
     }
 
     private void toggleButtons() {

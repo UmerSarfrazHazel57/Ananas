@@ -30,6 +30,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     public static final String TAG = RotateFragment.class.getName();
 
     private static final int RIGHT_ANGLE = 90;
+    private Integer initialRotateAnge = null;
 
     private View mainView;
     private RotateImageView rotatePanel;
@@ -85,7 +86,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
 
         activity.rotatePanel.reset();
         activity.rotatePanel.setVisibility(View.VISIBLE);
-        activity.bannerFlipper.showNext();
+//        activity.bannerFlipper.showNext();
     }
 
     @Override
@@ -94,7 +95,10 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setVisibility(View.VISIBLE);
         this.rotatePanel.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
+
     }
 
     @Override
@@ -113,12 +117,31 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     @Override
     public void onClick(View v) {
         int id = v.getId();
+
+        if(initialRotateAnge == null){
+            initialRotateAnge = rotatePanel.getRotateAngle();
+        }
+
         if (id == R.id.rotate_left) {
             int updatedAngle = rotatePanel.getRotateAngle() - RIGHT_ANGLE;
             rotatePanel.rotateImage(updatedAngle);
+            if(initialRotateAnge  == rotatePanel.getRotateAngle() ){
+                activity.bannerFlipper.showPrevious();
+            }else{
+                if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply){
+                    activity.bannerFlipper.showNext();
+                }
+            }
         } else if (id == R.id.rotate_right) {
             int updatedAngle = rotatePanel.getRotateAngle() + RIGHT_ANGLE;
             rotatePanel.rotateImage(updatedAngle);
+            if(initialRotateAnge  == rotatePanel.getRotateAngle() ){
+                activity.bannerFlipper.showPrevious();
+            }else{
+                if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply){
+                    activity.bannerFlipper.showNext();
+                }
+            }
         }
     }
 

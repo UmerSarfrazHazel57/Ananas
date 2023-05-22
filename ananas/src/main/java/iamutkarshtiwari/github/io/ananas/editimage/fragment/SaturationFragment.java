@@ -25,6 +25,7 @@ public class SaturationFragment extends BaseEditFragment {
     private SaturationView mSaturationView;
     private SeekBar mSeekBar;
     private View mainView;
+    private int initialProgress = 0;
 
     public static SaturationFragment newInstance() {
         return new SaturationFragment();
@@ -55,11 +56,24 @@ public class SaturationFragment extends BaseEditFragment {
 
         this.mSaturationView = ensureEditActivity().saturationView;
         mBackToMenu.setOnClickListener(new SaturationFragment.BackToMenuClick());
+        initialProgress  = mSeekBar.getProgress();
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 float value = progress - (seekBar.getMax() / 2);
                 activity.saturationView.setSaturation(value / 10f);
+
+
+                if(initialProgress == progress){
+                    if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn ){
+                        activity.bannerFlipper.showPrevious();
+                    }
+                }else{
+                    if(activity.bannerFlipper.getCurrentView().getId() != R.id.apply ){
+                        activity.bannerFlipper.showNext();
+                    }
+                }
+
             }
 
             @Override
@@ -85,7 +99,7 @@ public class SaturationFragment extends BaseEditFragment {
         activity.saturationView.setImageBitmap(activity.getMainBit());
         activity.saturationView.setVisibility(View.VISIBLE);
         initView();
-        activity.bannerFlipper.showNext();
+        //activity.bannerFlipper.showNext();
     }
 
     @Override
@@ -94,7 +108,10 @@ public class SaturationFragment extends BaseEditFragment {
         activity.bottomGallery.setCurrentItem(0);
         activity.mainImage.setVisibility(View.VISIBLE);
         activity.saturationView.setVisibility(View.GONE);
-        activity.bannerFlipper.showPrevious();
+        if(activity.bannerFlipper.getCurrentView().getId() != R.id.save_btn){
+            activity.bannerFlipper.showPrevious();
+        }
+
         activity.saturationView.setSaturation(INITIAL_SATURATION);
     }
 
