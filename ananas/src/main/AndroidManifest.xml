@@ -4,6 +4,7 @@
 
     <application>
         <activity
+            android:configChanges="uiMode"
             android:name="iamutkarshtiwari.github.io.ananas.editimage.EditImageActivity"
             android:label="@string/iamutkarshtiwari_github_io_ananas_library_name"
             android:exported="true" />

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -123,6 +124,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         }
         launcher.launch(intent);
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -540,4 +543,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             }
         }
     }
+
+
 }
