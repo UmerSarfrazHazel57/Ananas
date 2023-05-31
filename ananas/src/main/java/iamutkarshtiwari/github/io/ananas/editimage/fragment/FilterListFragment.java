@@ -120,6 +120,10 @@ public class FilterListFragment extends BaseEditFragment {
     }
 
     public void enableFilter(int filterIndex) {
+
+        if(loadingDialog.isShowing()){
+            return;
+        }
         if (filterIndex == NULL_FILTER_INDEX) {
             activity.mainImage.setImageBitmap(activity.getMainBit());
             currentBitmap = activity.getMainBit();
